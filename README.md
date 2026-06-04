@@ -97,10 +97,6 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 For local testing, Mailtrap SMTP can be used.
 
----
-
-## Testing
-
 ### Daily Reminder
 
 Create a task due tomorrow and run:
@@ -115,13 +111,13 @@ This command queues reminder emails for all tasks due tomorrow.
 
 ### Upcoming Reminder (15 Minutes Before Due Time)
 
-Create a task with `due_at` set to 15 minutes from the current time and run:
+Create a task with `due_at` set to a time within the next 15 minutes from the current time and run:
 
 ```bash
 php artisan app:send-upcoming-task-reminder-command
 ```
 
-This command queues reminder emails for tasks that are due within the next 15 minutes.
+This command queues reminder emails for tasks that are due within the next 15 minutes and have not already had a 15-minute upcoming reminder sent (`reminder_sent_at` is `NULL`).
 
 ---
 
@@ -151,7 +147,7 @@ php artisan queue:work
 Runs every day at 12:00 AM.
 
 ```php
-Schedule::command('tasks:daily-reminder')
+Schedule::command('app:send-task-reminders')
     ->dailyAt('00:00');
 ```
 
@@ -160,6 +156,6 @@ Schedule::command('tasks:daily-reminder')
 Runs every minute and sends reminders for tasks due in the next 15 minutes.
 
 ```php
-Schedule::command('tasks:upcoming-reminder')
+Schedule::command('app:send-upcoming-task-reminder-command')
     ->everyMinute();
 ```

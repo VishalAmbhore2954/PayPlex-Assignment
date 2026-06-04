@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendTaskReminderJob;
+use App\Models\Task;
 use Illuminate\Console\Attributes\Description;
 use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
-use App\Models\Task;
-use App\Jobs\SendTaskReminderJob;
 
 #[Signature('app:send-upcoming-task-reminder-command')]
 #[Description('Command description')]
@@ -20,17 +20,17 @@ class SendUpcomingTaskReminderCommand extends Command
         $tasks = Task::with('user')
             ->where('due_at', '>', now())
             ->where('due_at', '<=', now()->addMinutes(15))
+            ->whereNull('reminder_sent_at')
             ->get();
 
         foreach ($tasks as $task) {
 
             SendTaskReminderJob::dispatch($task->user, $task);
 
-            $task->update([
-                'reminder_sent_at' => now()
-            ]);
+            $task->reminder_sent_at = now();
+            $task->save();
         }
 
-        $this->info("Processed: " . $tasks->count());
+        $this->info('Processed: '.$tasks->count());
     }
 }
