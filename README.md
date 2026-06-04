@@ -5,8 +5,12 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone 'https://github.com/VishalAmbhore2954/PayPlex-Assignment.git'
+git clone https://github.com/VishalAmbhore2954/PayPlex-Assignment.git
 cd <project-folder>
+```
+
+```bash
+cd PayPlex-Assignment
 ```
 
 ### 2. Install Dependencies
