@@ -5,7 +5,7 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone 'https://github.com/VishalAmbhore2954/PayPlex-Assignment.git'
 cd <project-folder>
 ```
 
@@ -103,7 +103,7 @@ For local testing, Mailtrap SMTP can be used.
 Create a task due tomorrow and run:
 
 ```bash
-php artisan tasks:daily-reminder
+php artisan app:send-task-reminders
 ```
 
 This command queues reminder emails for all tasks due tomorrow.
@@ -115,7 +115,7 @@ This command queues reminder emails for all tasks due tomorrow.
 Create a task with `due_at` set to 15 minutes from the current time and run:
 
 ```bash
-php artisan tasks:upcoming-reminder
+php artisan app:send-upcoming-task-reminder-command
 ```
 
 This command queues reminder emails for tasks that are due within the next 15 minutes.

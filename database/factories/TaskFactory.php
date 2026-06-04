@@ -21,7 +21,7 @@ class TaskFactory extends Factory
             'user_id' => fake()->numberBetween(1, 10),
             'title' => fake()->sentence(3),
             'description' => fake()->paragraph(),
-            'due_at' => fake()->dateTimeBetween('now', '+1 days'),
+            'due_at' => fake()->dateTimeBetween('now',"+16 minutes"),
             'status' => fake()->randomElement([
                 'pending',
                 'in_progress',
