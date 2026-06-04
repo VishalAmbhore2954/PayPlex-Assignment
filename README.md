@@ -59,6 +59,9 @@ php artisan key:generate
 ```bash
 php artisan migrate
 ```
+```bash
+php artisan db:seed
+```
 
 ### 7. Start the Application
 
