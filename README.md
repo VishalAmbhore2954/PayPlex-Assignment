@@ -59,6 +59,8 @@ php artisan key:generate
 ```bash
 php artisan migrate
 ```
+
+### 6.1 Seed data 
 ```bash
 php artisan db:seed
 ```
