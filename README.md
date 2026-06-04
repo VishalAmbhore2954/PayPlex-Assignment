@@ -6,7 +6,6 @@
 
 ```bash
 git clone https://github.com/VishalAmbhore2954/PayPlex-Assignment.git
-cd <project-folder>
 ```
 
 ```bash
